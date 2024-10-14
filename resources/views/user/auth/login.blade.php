@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('user.layouts.head')
+<head>
 <title>Login</title>
+</head>
 <body>
     @include('user.layouts.nav')
 
@@ -21,7 +23,7 @@
                         <input name="password" type="password" class="form-control" id="exampleInputPassword1">
                       </div>
                 </div>
-             
+             <a href="{{route('password.request')}}" class="me-2">Forget Password</a>
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
          
