@@ -26,3 +26,8 @@ Route::view('contact' , 'user.info.contact')->name('contact');
 Route::view('register/test' , 'user.auth.register')->name('register');
 // =============End For View ==========================
 require __DIR__.'/auth.php';
+
+// for seller and admin
+Route::prefix('/seller')->group(function () {
+Route::view('/index' , 'seller.index')->name('seller.index');
+});   
