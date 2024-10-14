@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // ==============For View ==========================
-Route::view('/shop' , 'user.index')->name('shop');
+Route::view('/shop' , 'user.index')->name('shop')->middleware(['auth' , 'verified']);
 Route::view('/about' , 'user.info.about')->name('about');
 Route::view('/product' , 'user.info.product')->name('product');
 Route::view('single' , 'user.info.single-product')->name('single-product');

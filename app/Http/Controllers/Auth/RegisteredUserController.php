@@ -37,14 +37,19 @@ class RegisteredUserController extends Controller
             'image' => [ 'required','image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'phone' => ['required', 'string', 'max:20'],
         ]);
-
+        
+            $image_path = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_path = $image->store('images', 'user_image');
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'gender' => $request->gender,
             'phone' => $request->phone,
-            'image' => $request->image,
+            'image' => $image_path,
 
         ]);
 
