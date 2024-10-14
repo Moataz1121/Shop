@@ -26,7 +26,7 @@
                         <li class="submenu">
                             <a href="javascript:;">Features</a>
                             <ul>
-                                <li><a href="#">Features Page 1</a></li>
+                                <li><form action="{{route('logout')}}" method="POST">@csrf <input class="btn btn-primary" type="submit" value="{{__('Logout')}}"></form></li>
                                 <li><a href="#">Features Page 2</a></li>
                                 <li><a href="#">Features Page 3</a></li>
                                 <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\SellerAuth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('user.auth.register');
+        return view('auth.register');
     }
 
     /**
@@ -30,28 +30,21 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'gender' => ['required', 'string', 'in:male,female'],
-            'image' => [ 'required','image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'phone' => ['required', 'string', 'max:20'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'image' => $request->image,
-
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return to_route('shop');
+        return redirect(route('dashboard', absolute: false));
     }
 }

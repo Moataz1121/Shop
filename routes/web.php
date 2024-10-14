@@ -17,10 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+// ==============For View ==========================
 Route::view('/shop' , 'user.index')->name('shop');
 Route::view('/about' , 'user.info.about')->name('about');
 Route::view('/product' , 'user.info.product')->name('product');
 Route::view('single' , 'user.info.single-product')->name('single-product');
 Route::view('contact' , 'user.info.contact')->name('contact');
+Route::view('register/test' , 'user.auth.register')->name('register');
+// =============End For View ==========================
 require __DIR__.'/auth.php';
