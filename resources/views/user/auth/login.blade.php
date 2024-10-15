@@ -27,7 +27,10 @@
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
          
-           
+            <a href="{{ route('facebook') }}" class="btn btn-primary">
+                Login with Facebook
+            </a>
+            
           
           </form>
     </div>

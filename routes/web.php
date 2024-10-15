@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,3 +37,35 @@ Route::prefix('/seller')->name('seller.')->group(function () {
     // Route::view('/login' , 'seller.auth.login')->name('login');
     require __DIR__.'/sellerAuth.php';
 });
+
+
+// face book 
+Route::get('/auth/facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+})->name('facebook');
+
+Route::get('/auth/facebook/callback', function () {
+    try{
+        $user = Socialite::driver('facebook')->stateless()->user();
+
+
+    
+        $authUser = App\Models\User::updateOrCreate([
+            'facebook_id' => $user->getId(),
+        ], [
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'password' => Hash::make('password'), 
+            'image' => $user->getAvatar(),
+            'email_verified_at' => now(),
+        ]);
+    
+        Auth::login($authUser);
+    
+        return to_route('shop');
+    }catch( Exception $e){
+        dd($e->getMessage());
+    }
+   
+})->name('facebook.callback');
+// end face book
