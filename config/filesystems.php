@@ -63,6 +63,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'seller_image'=>[
+            'driver'=>'local',
+            'root' => public_path('images/seller_images'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
 
     ],

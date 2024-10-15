@@ -28,6 +28,9 @@ Route::view('register/test' , 'user.auth.register')->name('register');
 require __DIR__.'/auth.php';
 
 // for seller and admin
-Route::prefix('/seller')->group(function () {
-Route::view('/index' , 'seller.index')->name('seller.index');
-});   
+Route::prefix('/seller')->name('seller.')->group(function () {
+    Route::view('/index' , 'seller.index')->name('index')->middleware(['seller', 'sellerVerified' ]);
+    // Route::view('/register' , 'seller.auth.register')->name('register');
+    // Route::view('/login' , 'seller.auth.login')->name('login');
+    require __DIR__.'/sellerAuth.php';
+});

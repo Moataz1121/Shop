@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('user.layouts.head')
-<title>Register</title>
+@include('seller.layouts.head')
 <body>
-    @include('user.layouts.nav')
-    <div class="container" style="margin-top: 150px">
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" >
+    <div class="container" style="margin-top: 50px">
+        <form method="POST" action="{{ route('seller.register') }}" enctype="multipart/form-data" >
            @csrf
             <div class="row shadow p-3">
                 <div class="col-lg-6">
@@ -85,7 +83,7 @@
           
           </form>
     </div>
-  
-
+    
+    
 </body>
 </html>
