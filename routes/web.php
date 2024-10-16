@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +38,11 @@ Route::prefix('/seller')->name('seller.')->group(function () {
     // Route::view('/login' , 'seller.auth.login')->name('login');
     require __DIR__.'/sellerAuth.php';
 });
+
+Route::get('/google' , [GoogleController::class, 'login'])->name('google.login');
+Route::get('gmail/redirect', [GoogleController::class, 'redirect'])->name('gmail.redirect');
+
+
 
 
 // face book 
