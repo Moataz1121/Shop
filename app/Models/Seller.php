@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\URL;
+use Laravel\Sanctum\HasApiTokens;
+
 class Seller extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory , Notifiable;
+    use HasFactory , Notifiable , HasApiTokens;
     public function sendEmailVerificationNotification(){
         $url = URL::temporarySignedRoute(
             'seller.verification.verify', 

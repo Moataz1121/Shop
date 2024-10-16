@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GmailController;
+use App\Http\Controllers\RegisterSellerController;
 use App\Http\Controllers\RegisterUserController;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -18,5 +19,9 @@ Route::controller(GmailController::class)->group(function () {
 
 
 Route::post('register' , [RegisterUserController::class, 'store']);
-
 Route::post('login' , [RegisterUserController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [RegisterUserController::class, 'logout']);
+
+Route::post('seller/register' , [RegisterSellerController::class, 'store']);
+Route::post('seller/login' , [RegisterSellerController::class, 'login']);
+Route::post('seller/logout' , [RegisterSellerController::class, 'logout'])->middleware('auth:sanctum');
