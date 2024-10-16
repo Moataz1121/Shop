@@ -40,32 +40,32 @@ Route::prefix('/seller')->name('seller.')->group(function () {
 
 
 // face book 
-Route::get('/auth/facebook', function () {
-    return Socialite::driver('facebook')->redirect();
-})->name('facebook');
+// Route::get('/auth/facebook', function () {
+//     return Socialite::driver('facebook')->redirect();
+// })->name('facebook');
 
-Route::get('/auth/facebook/callback', function () {
-    try{
-        $user = Socialite::driver('facebook')->stateless()->user();
+// Route::get('/auth/facebook/callback', function () {
+//     try{
+//         $user = Socialite::driver('facebook')->stateless()->user();
 
 
     
-        $authUser = App\Models\User::updateOrCreate([
-            'facebook_id' => $user->getId(),
-        ], [
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'password' => Hash::make('password'), 
-            'image' => $user->getAvatar(),
-            'email_verified_at' => now(),
-        ]);
+//         $authUser = App\Models\User::updateOrCreate([
+//             'facebook_id' => $user->getId(),
+//         ], [
+//             'name' => $user->getName(),
+//             'email' => $user->getEmail(),
+//             'password' => Hash::make('password'), 
+//             'image' => $user->getAvatar(),
+//             'email_verified_at' => now(),
+//         ]);
     
-        Auth::login($authUser);
+//         Auth::login($authUser);
     
-        return to_route('shop');
-    }catch( Exception $e){
-        dd($e->getMessage());
-    }
+//         return to_route('shop');
+//     }catch( Exception $e){
+//         dd($e->getMessage());
+//     }
    
-})->name('facebook.callback');
+// })->name('facebook.callback');
 // end face book
