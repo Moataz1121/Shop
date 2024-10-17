@@ -30,9 +30,13 @@
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
          
-           
+       
+            
           
           </form>
+          <a href="{{ route('google.login', ['type' => 'seller']) }}" class="btn btn-primary">
+            Login with Google (Seller)
+        </a>
     </div>
     
     

@@ -27,9 +27,10 @@
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
          
-            <a href="{{ route('google.login') }}" class="btn btn-primary">
-                Login with Google
+            <a href="{{ route('google.login', ['type' => 'user']) }}" class="btn btn-primary">
+                Login with Google (User)
             </a>
+            
             
           
           </form>
