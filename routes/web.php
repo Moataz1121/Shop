@@ -54,6 +54,7 @@ Route::get('/gmail/redirect', [GoogleController::class, 'redirect'])->name('gmai
 // =====================Admin Routes =======================
 
 Route::view('admin' , 'admin.index')->name('admin');
+Route::resource('admin/category' , 'App\Http\Controllers\CategoryController')->names('admin.category');
 // ======================End Admin Routes ====================
 
 
