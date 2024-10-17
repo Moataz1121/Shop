@@ -1,5 +1,5 @@
 @extends('admin.master')
-
+@section('category_active', 'active')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     @if (session('success'))
