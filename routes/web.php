@@ -39,14 +39,22 @@ Route::prefix('/seller')->name('seller.')->group(function () {
     require __DIR__.'/sellerAuth.php';
 });
 
-// Route::get('/google' , [GoogleController::class, 'login'])->name('google.login');
-// Route::get('gmail/redirect', [GoogleController::class, 'redirect'])->name('gmail.redirect');
 
-// web.php
 
 Route::get('/google/login/{type}', [GoogleController::class, 'login'])->name('google.login');
 Route::get('/gmail/redirect', [GoogleController::class, 'redirect'])->name('gmail.redirect');
 
+
+
+// =====================Seller Routes =======================
+
+// ======================End Seller Routes ====================
+
+
+// =====================Admin Routes =======================
+
+Route::view('admin' , 'admin.index')->name('admin');
+// ======================End Admin Routes ====================
 
 
 // face book 
