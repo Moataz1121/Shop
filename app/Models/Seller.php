@@ -31,5 +31,8 @@ class Seller extends Authenticatable implements MustVerifyEmail
         
     }
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
     protected $fillable = ['name' , 'email' , 'password' , 'gender' , 'phone' , 'image', 'provider_id' , 'email_verified_at'];
 }
