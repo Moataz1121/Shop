@@ -68,20 +68,34 @@
 
     <ul class="menu-inner py-1">
       <!-- Dashboard -->
-      <li class="menu-item @yield('dashboard_active')">
+      {{-- <li class="menu-item @yield('dashboard_active')">
         <a href="{{route('admin')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Dashboard</div>
         </a>
+      </li> --}}
+
+      <li class="menu-item @yield('dashboard_active')">
+      <x-side-admin  href="{{route('admin')}}" title="Dashboard" icon="menu-icon tf-icons bx bx-home-circle"></x-side-admin>
       </li>
 
-      <!-- Layouts -->
       <li class="menu-item @yield('category_active')">
+      <x-side-admin href="{{route('admin.category.index')}}" title="Category" icon="menu-icon tf-icons bx bx-home-circle" ></x-side-admin>
+
+      </li>
+
+      <li class="menu-item @yield('subscriber_active')">
+        <x-side-admin href="{{route('subscriber.index')}}" title="Subscribers" icon="menu-icon tf-icons bx bx-home-circle" ></x-side-admin>
+  
+        </li>
+      <!-- Layouts -->
+      {{-- category --}}
+      {{-- <li class="menu-item @yield('category_active')">
         <a href="{{route('admin.category.index')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Category</div>
         </a>
-      </li>
+      </li> --}}
       
     </ul>
   </aside>

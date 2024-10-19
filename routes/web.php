@@ -27,6 +27,7 @@ Route::view('/product' , 'user.info.product')->name('product');
 Route::view('single' , 'user.info.single-product')->name('single-product');
 Route::view('contact' , 'user.info.contact')->name('contact');
 Route::view('register/test' , 'user.auth.register')->name('register');
+Route::resource('subscriber' , 'App\Http\Controllers\SubscriberController')->names('subscriber');
 // =============End For View ==========================
 require __DIR__.'/auth.php';
 

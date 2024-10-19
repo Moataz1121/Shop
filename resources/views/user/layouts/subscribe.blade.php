@@ -6,17 +6,24 @@
                     <h2>By Subscribing To Our Newsletter You Can Get 30% Off</h2>
                     <span>Details to details is what makes Hexashop different from the other themes.</span>
                 </div>
-                <form id="subscribe" action="" method="get">
+                <form id="subscribe" action="{{route('subscriber.store')}}" method="POST">
+                  @csrf
                     <div class="row">
                       <div class="col-lg-5">
                         <fieldset>
                           <input name="name" type="text" id="name" placeholder="Your Name" required="">
                         </fieldset>
+                        @error('name')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                       <div class="col-lg-5">
                         <fieldset>
                           <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
                         </fieldset>
+                        @error('email')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                       </div>
                       <div class="col-lg-2">
                         <fieldset>
