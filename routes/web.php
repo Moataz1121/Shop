@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\SellerAuth\AuthenticatedSessionController;
+
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +39,8 @@ Route::prefix('/seller')->name('seller.')->group(function () {
 });
 
 
+Route::get('/seller/log' , [AuthenticatedSessionController::class, 'create']);
+Route::post('/seller/log' , [AuthenticatedSessionController::class, 'store'])->name('seller.logins');
 
 Route::get('/google/login/{type}', [GoogleController::class, 'login'])->name('google.login');
 Route::get('/gmail/redirect', [GoogleController::class, 'redirect'])->name('gmail.redirect');
@@ -53,7 +54,7 @@ Route::get('/gmail/redirect', [GoogleController::class, 'redirect'])->name('gmai
 
 // =====================Admin Routes =======================
 
-Route::view('admin' , 'admin.index')->name('admin');
+Route::view('admin' , 'admin.index')->name('admin')->middleware(['admin']);
 Route::resource('admin/category' , 'App\Http\Controllers\CategoryController')->names('admin.category');
 // ======================End Admin Routes ====================
 

@@ -3,7 +3,7 @@
 @include('seller.layouts.head')
 <body>
     <div class="container" style="margin-top: 50px">
-        <form method="POST" action="{{ route('seller.login') }}"  >
+        <form method="POST" action="{{ route('seller.logins') }}"  >
            @csrf
              
                 <div class="col-lg-6">

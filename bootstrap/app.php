@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Seller;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'seller' => Seller::class,
             'sellerVerified' => \App\Http\Middleware\VerifyEmailSeller::class,
+            'admin' => Admin::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

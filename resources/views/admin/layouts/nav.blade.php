@@ -88,7 +88,11 @@ id="layout-navbar"
           <div class="dropdown-divider"></div>
         </li>
         <li>
-          <a class="dropdown-item" href="auth-login-basic.html">
+          <form method="POST" action="{{route('seller.logout')}}">
+            @csrf
+            <button class="btn btn-danger">Logout</button>
+          </form>
+          <a class="dropdown-item" href="{{route('seller.logout')}}">
             <i class="bx bx-power-off me-2"></i>
             <span class="align-middle">Log Out</span>
           </a>
