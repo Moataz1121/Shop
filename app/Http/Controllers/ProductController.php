@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\Size;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -87,6 +89,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        $product = Product::find($product->id);
+        $categories = Category::all();
+        $sizes = Size::all();
+        return view('seller.product.edit', compact('product', 'categories', 'sizes'));
     }
 
     /**
@@ -95,6 +101,33 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         //
+        $request->validated();
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+        ]);
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'seller_image');
+                $product->images()->create([
+                    'product_id' => $request->product_id,
+                    'image' => $path
+                ]);
+            }
+        }
+        foreach ($request->sizes as $size) {
+            ProductSize::updateOrCreate([
+                'product_id' => $product->id,
+                'size_id' => $size,
+            ],[
+                'product_id' => $product->id,
+                'size_id' => $size,
+            ]);             
+        }
+
+        return to_route('seller.product.index')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -103,10 +136,31 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        dd('hello');
 
         $product->delete();
 
         return to_route('seller.product.index')->with('success', 'Product deleted successfully');
 
     }
+
+    public function destroyImage($productId, $imageId)
+{
+    // Find the image by its id and ensure it belongs to the specified product
+    $image = Image::where('id', $imageId)->where('product_id', $productId)->first();
+
+    // Check if the image exists
+    if (!$image) {
+        return redirect()->back()->with('error', 'Image not found.');
+    }
+
+    // Delete the image from the storage
+    Storage::disk('seller_image')->delete($image->image); // Delete the actual image file
+
+    // Delete the image record from the database
+    $image->delete();
+
+    return redirect()->route('seller.product.edit', $productId)->with('success', 'Image deleted successfully');
+}
+
 }

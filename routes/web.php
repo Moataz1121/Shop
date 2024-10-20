@@ -45,6 +45,9 @@ Route::resource('seller/product' , ProductController::class)->names('seller.prod
 Route::get('/seller/log' , [AuthenticatedSessionController::class, 'create']);
 Route::post('/seller/log' , [AuthenticatedSessionController::class, 'store'])->name('seller.logins');
 
+Route::delete('seller/destroy/{product}/{image}', [ProductController::class, 'destroyImage'])->name('seller.destroy.image');
+Route::put('seller/update/{product}', [ProductController::class, 'update'])->name('seller.update.image');
+
 Route::get('/google/login/{type}', [GoogleController::class, 'login'])->name('google.login');
 Route::get('/gmail/redirect', [GoogleController::class, 'redirect'])->name('gmail.redirect');
 

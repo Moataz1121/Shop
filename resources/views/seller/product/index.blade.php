@@ -37,7 +37,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('seller.product.edit', $cat->id) }}" class="btn btn-warning">Edit</a>
                         <form class="d-inline" action="{{ route('seller.product.destroy', $cat->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
