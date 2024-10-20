@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $guarded = ['id'];
     use HasFactory;
     public function category(){
         return $this->belongsTo(Category::class);
@@ -18,5 +19,9 @@ class Product extends Model
 
     public function images(){
         return $this->hasMany(Image::class);
+    }
+
+    public function sizes(){
+        return $this->hasMany(Size::class);
     }
 }

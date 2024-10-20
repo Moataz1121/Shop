@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductSize;
+use App\Models\Size;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
+        return view('seller.product.index');
     }
 
     /**
@@ -22,6 +27,9 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+        $sizes = Size::all();
+        return view('seller.product.create', compact('categories', 'sizes'));
     }
 
     /**
@@ -30,6 +38,34 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        $request->validated();
+        // dd($request->all());
+        $product = Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+            'seller_id' => Auth::guard('seller')->id(),
+        ]);
+
+        foreach ($request->sizes as $size) {
+            ProductSize::create([
+                'product_id' => $product->id,
+                'size_id' => $size,
+            ]);            
+        }
+        if($request->hasFile('images')){
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('images', 'seller_image');
+                $product->images()->create([
+                    'product_id' => $request->product_id,
+                    'image' => $path
+                ]);
+            }
+        }
+        // dd($request->all());
+
+        return to_route('seller.product.index')->with('success', 'Product created successfully');
     }
 
     /**

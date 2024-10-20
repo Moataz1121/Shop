@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerAuth\AuthenticatedSessionController;
 
@@ -39,6 +40,7 @@ Route::prefix('/seller')->name('seller.')->group(function () {
     require __DIR__.'/sellerAuth.php';
 });
 
+Route::resource('seller/product' , ProductController::class)->names('seller.product');
 
 Route::get('/seller/log' , [AuthenticatedSessionController::class, 'create']);
 Route::post('/seller/log' , [AuthenticatedSessionController::class, 'store'])->name('seller.logins');
