@@ -17,8 +17,11 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::where('seller_id', Auth::guard('seller')->id())
+        ->with(['images', 'sizes']) 
+        ->get();        
         //
-        return view('seller.product.index');
+        return view('seller.product.index' , compact('products'));
     }
 
     /**
@@ -74,6 +77,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        $product = Product::find($product->id);
+        return view('seller.product.show', compact('product'));
     }
 
     /**
@@ -98,5 +103,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+
+        $product->delete();
+
+        return to_route('seller.product.index')->with('success', 'Product deleted successfully');
+
     }
 }
