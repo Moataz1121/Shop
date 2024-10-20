@@ -88,6 +88,11 @@
         <x-side-admin href="{{route('subscriber.index')}}" title="Subscribers" icon="menu-icon tf-icons bx bx-home-circle" ></x-side-admin>
   
         </li>
+
+        <li class="menu-item @yield('product_active')">
+          <x-side-admin href="{{route('admin.getProducts')}}" title="Products" icon="menu-icon tf-icons bx bx-home-circle" ></x-side-admin>
+    
+          </li>
       <!-- Layouts -->
       {{-- category --}}
       {{-- <li class="menu-item @yield('category_active')">

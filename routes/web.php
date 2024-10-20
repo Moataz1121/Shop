@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -64,6 +65,12 @@ Route::view('admin' , 'admin.index')->name('admin')->middleware(['admin']);
 Route::resource('admin/category' , 'App\Http\Controllers\CategoryController')->names('admin.category');
 // ======================End Admin Routes ====================
 
+
+Route::controller(AdminController::class)->prefix('/admin')->group(function () {
+   Route::get('/products' , 'getProducts')->name('admin.getProducts');
+   Route::get('getProductDetails/{id}' , 'getProductDetails')->name('admin.getProductDetails');
+   Route::put('updateProduct/{id}' , 'updateProduct')->name('admin.updateProduct'); 
+});
 
 // face book 
 // Route::get('/auth/facebook', function () {
