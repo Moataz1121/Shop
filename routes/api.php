@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GmailController;
+use App\Http\Controllers\ProductApiController;
 use App\Http\Controllers\RegisterSellerController;
 use App\Http\Controllers\RegisterUserController;
 use Illuminate\Auth\Events\Registered;
@@ -25,3 +26,14 @@ Route::middleware('auth:sanctum')->post('logout', [RegisterUserController::class
 Route::post('seller/register' , [RegisterSellerController::class, 'store']);
 Route::post('seller/login' , [RegisterSellerController::class, 'login']);
 Route::post('seller/logout' , [RegisterSellerController::class, 'logout'])->middleware('auth:sanctum');
+
+
+// ======================= For made product =======================
+
+Route::controller(ProductApiController::class)->name('api.product.')->group(function () {
+    Route::post('product/made' , 'store')->name('made.product');
+    Route::get('product/get' , 'index')->name('made.product.index');
+    Route::put('product/update/{id}' , 'update')->name('made.product.update');
+});
+
+// ====================== End For made product =======================
