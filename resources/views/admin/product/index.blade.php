@@ -24,6 +24,7 @@
             <th scope="col" class="text-center">Price</th>
             <th scope="col" class="text-center">Date OF Creation</th>
             <th scope="col" class="text-center">Action</th>
+            <th scope="col" class="text-center">Send Email</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,9 @@
                 <td class="text-center">{{$cat->created_at->diffForHumans()}}</td>
                 <td class="text-center">
                     <a href="{{route('admin.getProductDetails', $cat->id)}}" class="btn btn-warning">More...</a>
+                </td>
+                <td class="text-center">
+                    <a href="{{route('admin.sendEmail', $cat->id)}}" class="btn btn-success">Send Email</a>
                 </td>
               </tr>
             @endforeach       

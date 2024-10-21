@@ -71,6 +71,8 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
    Route::get('/products' , 'getProducts')->name('admin.getProducts');
    Route::get('getProductDetails/{id}' , 'getProductDetails')->name('admin.getProductDetails');
    Route::put('updateProduct/{id}' , 'updateProduct')->name('admin.updateProduct'); 
+   Route::get('send_email/{id}' , 'sendEmail')->name('admin.sendEmail');
+   Route::post('send_email/{id}' , 'sendEmailPost')->name('admin.sendEmailPost');
 });
 
 // face book 
