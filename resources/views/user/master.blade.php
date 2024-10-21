@@ -25,6 +25,7 @@
     <!-- ***** Main Banner Area End ***** -->
 
     <!-- ***** Men Area Starts ***** -->
+ 
     @include('user.layouts.men')
     <!-- ***** Men Area Ends ***** -->
 

@@ -11,8 +11,17 @@ class UserViewController extends Controller
 
     public function getMenProducts()
     {
-        $products = Product::where('category_id', 1)->get();
-        return view('user.master', compact('products'));
+        $products = Product::with(['images', 'sizes'])->where('category_id', 1)->get();
+        $womenProducts = Product::with(['images', 'sizes'])->where('category_id', 3)->get();        // return view('user.master', compact('products'));
+        // return view('user.master', compact('products'));
+        // dd($womenProducts);
+        $kidsProducts = Product::with(['images', 'sizes'])->where('category_id', 4)->get();
+        return view('user.index', compact('products' , 'womenProducts' , 'kidsProducts'));     
 
     }
+
+    // public function getWomenProducts()
+    // {
+    //     return view('user.index', compact('productsWomens'));
+    // }
 }
