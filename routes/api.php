@@ -34,6 +34,8 @@ Route::controller(ProductApiController::class)->name('api.product.')->group(func
     Route::post('product/made' , 'store')->name('made.product');
     Route::get('product/get' , 'index')->name('made.product.index');
     Route::put('product/update/{id}' , 'update')->name('made.product.update');
+    Route::get('/products' , 'allProducts')->name('products');
+    Route::get('/product/{id}' , 'productDetails')->name('show');
 });
 
 // ====================== End For made product =======================

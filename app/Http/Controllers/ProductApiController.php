@@ -107,4 +107,15 @@ public function update(Request $request, $id)
     return ApiResponse::sendResponse(200, 'success', $product);
 }
 }
+public function allProducts(){
+    $products = Product::where('status', 'accepted')->with(['images', 'sizes'])->get();
+    // dd($products);
+    return ApiResponse::sendResponse(200, 'success', $products);
+}
+
+public function productDetails($id){
+    $product = Product::where('id', $id)->with(['images', 'sizes'])->first();
+    // dd($product);
+    return ApiResponse::sendResponse(200, 'success', $product);
+}
 }
