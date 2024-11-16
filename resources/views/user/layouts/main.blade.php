@@ -18,86 +18,33 @@
             <div class="col-lg-6">
                 <div class="right-content">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Women</h4>
-                                        <span>Best Clothes For Women</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Women</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
+                        {{-- @dd($categories) --}}
+                        @if ($categories->count() > 0)
+                            @foreach ($categories as $category) 
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>{{$category->name}}</h4>
+                                            <span>Best Clothes For {{$category->name}}</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>{{$category->name}}</h4>
+                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <div class="main-border-button">
+                                                    <a href="{{route('product.index')}}">Discover More</a>
+                                                </div>
                                             </div>
                                         </div>
+                                        <img src="{{asset('front-assets')}}/images/baner-right-image-01.jpg">
                                     </div>
-                                    <img src="{{asset('front-assets')}}/images/baner-right-image-01.jpg">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Men</h4>
-                                        <span>Best Clothes For Men</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Men</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="{{asset('front-assets')}}/images/baner-right-image-02.jpg">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Kids</h4>
-                                        <span>Best Clothes For Kids</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Kids</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="{{asset('front-assets')}}/images/baner-right-image-03.jpg">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="right-first-image">
-                                <div class="thumb">
-                                    <div class="inner-content">
-                                        <h4>Accessories</h4>
-                                        <span>Best Trend Accessories</span>
-                                    </div>
-                                    <div class="hover-content">
-                                        <div class="inner">
-                                            <h4>Accessories</h4>
-                                            <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
-                                            <div class="main-border-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img src="{{asset('front-assets')}}/images/baner-right-image-04.jpg">
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
+                       
+                       
                     </div>
                 </div>
             </div>

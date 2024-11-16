@@ -27,6 +27,22 @@
                 </div>
             </div>
         </div>
+        <!-- ***** Filter by Category ***** -->
+<!-- ***** Filter by Category ***** -->
+<div class="col-lg-12 my-3">
+    <form method="GET" action="{{ route('products.filter') }}">
+        <select name="category_id" class="form-control" onchange="this.form.submit()">
+            <option value="">All Categories</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+</div>
+
+
     </div>
     <div class="container">
         <div class="row">
@@ -61,9 +77,10 @@
                 @endforeach
             @endif
        
-
+      
+            
             {{-- Pagination --}}
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
                 <div class="pagination">
                     <ul>
                         <li>
@@ -83,8 +100,11 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $products->links('pagination::bootstrap-4') }}
     </div>
 </section>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,7 @@ Route::get('/product/index' , 'allProducts')->name('index');
 Route::get('/product/{id}' , 'productDetails')->name('show');    
 });
 
+// Route::get('/product/men' , [UserViewController::class , 'getMenProducts'])->name('men');
 Route::get('/shop' , [UserViewController::class , 'getMenProducts'])->name('shop');
 // ==============For View ==========================
 Route::view('/about' , 'user.info.about')->name('about');
@@ -110,3 +112,10 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
    
 // })->name('facebook.callback');
 // end face book
+
+
+
+
+
+Route::get('/products/category' , [FilterController::class , 'index'])->name('products.category');
+Route::get('/products/filter', [ProductController::class, 'filterProducts'])->name('products.filter');

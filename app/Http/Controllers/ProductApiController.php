@@ -118,4 +118,22 @@ public function productDetails($id){
     // dd($product);
     return ApiResponse::sendResponse(200, 'success', $product);
 }
+
+public function filterProducts(Request $request)
+{
+
+    if ($request->has('category_id') && $request->category_id != '') {
+        $products = Product::where('category_id', $request->category_id)
+                           ->where('status', 'accepted')
+                           ->with(['images', 'sizes'])
+                           ->paginate(1);
+    } else {
+        $products = Product::where('status', 'accepted')
+                           ->with(['images', 'sizes'])
+                           ->paginate(1);
+    }
+
+    return ApiResponse::sendResponse(200, 'success', $products);
+}
+
 }

@@ -37,5 +37,7 @@ Route::controller(ProductApiController::class)->name('api.product.')->group(func
     Route::get('/products' , 'allProducts')->name('products');
     Route::get('/product/{id}' , 'productDetails')->name('show');
 });
+Route::get('/products/filter', [ProductApiController::class, 'filterProducts'])->name('products.filter');
+
 
 // ====================== End For made product =======================

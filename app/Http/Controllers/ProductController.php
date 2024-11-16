@@ -11,6 +11,8 @@ use App\Models\ProductSize;
 use App\Models\Size;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -163,9 +165,10 @@ class ProductController extends Controller
 }
 
 public function allProducts(){
+    $categories = Category::all();
     $products = Product::where('status', 'accepted')->with(['images', 'sizes'])->get();
     // dd($products);
-    return view('user.info.product', compact('products'));
+    return view('user.info.product', compact('products' , 'categories'));
 }
 
 
@@ -174,4 +177,22 @@ public function productDetails($id){
     // dd($product);
     return view('user.info.single-product', compact('product'));
 }
+
+public function filterProducts(Request $request)
+{
+    $categories = Category::all();
+    if ($request->has('category_id') && $request->category_id != '') {
+        $products = Product::where('category_id', $request->category_id)
+                           ->where('status', 'accepted')
+                           ->with(['images', 'sizes'])
+                           ->paginate(1);
+    } else {
+        $products = Product::where('status', 'accepted')
+                           ->with(['images', 'sizes'])
+                           ->paginate(1);
+    }
+
+    return view('user.info.product', compact('products', 'categories'));
+}
+
 }
