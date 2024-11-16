@@ -22,14 +22,21 @@
         <div class="row">
             <div class="col-lg-8">
             <div class="left-images">
-                <img src="{{asset('front-assets')}}/images/single-product-01.jpg" alt="">
-                <img src="{{asset('front-assets')}}/images/single-product-02.jpg" alt="">
+                @if ($product->images->isNotEmpty())
+                <img src="{{ asset('images/seller_images/' . $product->images[0]->image) }}" alt="">
+                {{-- <img src="{{ asset('images/seller_images/' . $product->images[1]->image) }}" alt=""> --}}
+
+            @else
+                <img src="{{ asset('front-assets/images/default-image.jpg') }}" alt="Default Image"> <!-- Default image if no images -->
+            @endif
+                {{-- <img src="{{asset('front-assets')}}/images/single-product-01.jpg" alt=""> --}}
+                {{-- <img src="{{asset('front-assets')}}/images/single-product-02.jpg" alt=""> --}}
             </div>
         </div>
         <div class="col-lg-4">
             <div class="right-content">
-                <h4>New Green Jacket</h4>
-                <span class="price">$75.00</span>
+                <h4>{{$product->name}}</h4>
+                <span class="price">${{$product->price}}</span>
                 <ul class="stars">
                     <li><i class="fa fa-star"></i></li>
                     <li><i class="fa fa-star"></i></li>
@@ -37,7 +44,7 @@
                     <li><i class="fa fa-star"></i></li>
                     <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod kon tempor incididunt ut labore.</span>
+                <span>{{$product->description}}.</span>
                 <div class="quote">
                     <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
                 </div>

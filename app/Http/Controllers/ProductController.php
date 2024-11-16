@@ -162,4 +162,16 @@ class ProductController extends Controller
     return redirect()->route('seller.product.edit', $productId)->with('success', 'Image deleted successfully');
 }
 
+public function allProducts(){
+    $products = Product::where('status', 'accepted')->with(['images', 'sizes'])->get();
+    // dd($products);
+    return view('user.info.product', compact('products'));
+}
+
+
+public function productDetails($id){
+    $product = Product::where('id', $id)->with(['images', 'sizes'])->first();
+    // dd($product);
+    return view('user.info.single-product', compact('product'));
+}
 }

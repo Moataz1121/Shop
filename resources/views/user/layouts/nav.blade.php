@@ -4,22 +4,22 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{{route('shop')}}" class="logo">
                         <img src="{{asset('front-assets')}}/images/logo.png">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                        <li class="scroll-to-section"><a href="{{route('shop')}}" class="active">Home</a></li>
                         <li class="scroll-to-section"><a href="#men">Men's</a></li>
                         <li class="scroll-to-section"><a href="#women">Women's</a></li>
                         <li class="scroll-to-section"><a href="#kids">Kid's</a></li>
                         <li class="submenu">
                             <a href="javascript:;">Pages</a>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="products.html">Products</a></li>
-                                <li><a href="single-product.html">Single Product</a></li>
+                                <li><a href="{{route('about')}}">About Us</a></li>
+                            <li><a href="{{route('product.index')}}">Products</a></li>
+                                <li><a href="{{route('single-product')}}">Single Product</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>
                             </ul>
                         </li>
