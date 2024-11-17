@@ -103,7 +103,7 @@
             </div> --}}
         </div>
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center pagination">
         {{ $products->links('pagination::bootstrap-4') }}
     </div>
 </section>

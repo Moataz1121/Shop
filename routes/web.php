@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProductController;
@@ -119,3 +120,13 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function () {
 
 Route::get('/products/category' , [FilterController::class , 'index'])->name('products.category');
 Route::get('/products/filter', [ProductController::class, 'filterProducts'])->name('products.filter');
+
+
+// for cart 
+Route::controller(CartController::class)->middleware('auth')->prefix('cart/')->name('cart.')->group(function(){
+Route::post('store' , 'store')->name('store');
+Route::get('index' , 'index')->name('index');
+Route::delete('delete/{id}' , 'destroy')->name('delete');
+});
+
+// end cart

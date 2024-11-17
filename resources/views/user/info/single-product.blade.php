@@ -58,9 +58,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="total">
+                <div class="total d-flex ">
+                    <a href="{{route('cart.index')}}">Your Cart</a>
                     <h4>Total: $210.00</h4>
-                    <div class="main-border-button"><a href="#">Add To Cart</a></div>
+                    @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                        @endif
+                    <form action="{{route('cart.store')}}" method="post">
+                        @csrf
+                        <input type="hidden" value="{{$product->id}}" name="product_id">
+                        <input type="hidden" value="{{Auth::id()}}" name="user_id">
+                        <input class="main-border-button btn btn-primary" type="submit" value="Add To Cart">
+                    </form>
                 </div>
             </div>
         </div>

@@ -166,7 +166,7 @@ class ProductController extends Controller
 
 public function allProducts(){
     $categories = Category::all();
-    $products = Product::where('status', 'accepted')->with(['images', 'sizes'])->get();
+    $products = Product::where('status', 'accepted')->with(['images', 'sizes'])->paginate(1);
     // dd($products);
     return view('user.info.product', compact('products' , 'categories'));
 }

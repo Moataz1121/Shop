@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartControllerApi;
 use App\Http\Controllers\GmailController;
 use App\Http\Controllers\ProductApiController;
 use App\Http\Controllers\RegisterSellerController;
@@ -41,3 +42,11 @@ Route::get('/products/filter', [ProductApiController::class, 'filterProducts'])-
 
 
 // ====================== End For made product =======================
+
+// For Cart
+Route::controller(CartControllerApi::class)->middleware('auth:sanctum')->name('cart.api.')->prefix('cart/')->group(function(){
+    Route::get('cart' , 'index');
+    Route::post('store' , 'store');
+    Route::delete('delete/{id}' , 'destroy');
+});
+// End Cart
