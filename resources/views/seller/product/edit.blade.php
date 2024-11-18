@@ -78,6 +78,17 @@
             <input type="submit" value="Submit" class="btn btn-primary" name="" id="">
         </div>
     </form>
+    <form action="{{ route('products.toggleStock', $product->id) }}" method="POST" style="display:inline;">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-sm btn-primary">
+            @if ($product->in_stock)
+                Mark as Out of Stock
+            @else
+                Mark as In Stock
+            @endif
+        </button>
+    </form>
 
     @foreach ($product->images as $image)
         <div class=" d-inline">
@@ -91,6 +102,8 @@
             </form>
 
         </div>
+        
     @endforeach
 
+    
 @endsection

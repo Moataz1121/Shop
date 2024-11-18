@@ -195,4 +195,14 @@ public function filterProducts(Request $request)
     return view('user.info.product', compact('products', 'categories'));
 }
 
+
+public function toggleStockStatus(Product $product)
+{
+    // Toggle the in_stock value
+    $product->in_stock = !$product->in_stock;
+    $product->save();
+
+    // Provide a success message to the user
+    return redirect()->back()->with('success', 'Product stock status updated successfully!');
+}
 }

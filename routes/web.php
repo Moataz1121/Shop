@@ -145,3 +145,8 @@ Route::controller(PaymentController::class)->middleware('auth')->name('payment.'
 // show user whoes booked to the seller 
 Route::get('/seller/bookings' , [PaymentController::class , 'showBookings'])->name('seller.booking')->middleware('seller');
 // end 
+// start stock 
+
+Route::patch('/products/{product}/toggle-stock', [ProductController::class, 'toggleStockStatus'])->name('products.toggleStock');
+
+// end stock 
