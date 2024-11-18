@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerAuth\AuthenticatedSessionController;
@@ -130,3 +131,13 @@ Route::delete('delete/{id}' , 'destroy')->name('delete');
 });
 
 // end cart
+
+// stripe payment
+Route::controller(PaymentController::class)->middleware('auth')->name('payment.')->prefix('payment/')->group(function(){
+ Route::get('index' , 'index')->name('index');
+ Route::post('stripe' , 'stripe')->name('stripe');
+ Route::get('success' , 'success')->name('success');
+ Route::get('cancel' , 'cancel')->name('cancel');   
+});
+
+// end stripe payment

@@ -33,6 +33,7 @@
                         <th>Quantity</th>
                         <th>Subtotal</th>
                         <th>Action</th>
+                        <th>Payment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +50,21 @@
                                     @method('DELETE')    
                                     <input type="submit" value="Delete" class="btn btn-danger">
                                 </form>
+                            </td>
+                            <td>
+                                <a 
+                                href="{{ route('payment.index', [
+                                    'cartItems' => $cartItems->map(fn($item) => [
+                                        'name' => $item->product->name,
+                                        'subtotal' => $item->product->price * $item->quantity,
+                                        'id' => $item->product->id
+                                    ])->toArray(),
+                                    'total' => $cartItems->sum(fn($item) => $item->product->price * $item->quantity)
+                                ]) }}" 
+                                class="btn btn-success"
+                            >
+                                Proceed to Payment
+                            </a>
                             </td>
                         </tr>
                     @endforeach
