@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Seller;
@@ -80,14 +81,29 @@ class PaymentController extends Controller
             $seller = Seller::where('id' , $product->seller_id)->first();
             $seller->wallet += $response->amount_total / 100;
             $seller->save();
+            Booking::create([
+                'user_id' => $response->metadata->user_id,
+                'product_id' => $response->metadata->product_id,
+                'seller_id' => $seller->id,
+                'booked_at' => now(),
+            ]);
         return view('user.payment.success');
 
     }
+    return view('user.payment.cancel'); 
 
     }
 
     public function cancel () {
         return view('user.payment.cancel'); 
       
+    }
+
+
+    public function showBookings(){
+        $seller = auth('seller')->user();
+        $bookings = Booking::with(['user', 'product'])->where('seller_id' , $seller->id)->get();
+        
+        return view('seller.booking' , compact('bookings'));
     }
 }

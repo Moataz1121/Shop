@@ -141,3 +141,7 @@ Route::controller(PaymentController::class)->middleware('auth')->name('payment.'
 });
 
 // end stripe payment
+
+// show user whoes booked to the seller 
+Route::get('/seller/bookings' , [PaymentController::class , 'showBookings'])->name('seller.booking')->middleware('seller');
+// end 

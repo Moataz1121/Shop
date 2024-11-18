@@ -35,6 +35,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Cart::class);
     }
 
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

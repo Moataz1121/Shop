@@ -41,6 +41,7 @@
           </li> --}}
           <x-side-tab href="{{route('seller.index')}}" icon="fa-home" title="Dashboard"></x-side-tab>
           <x-side-tab href="{{route('seller.product.index')}}" icon="fa-home" title="Product"></x-side-tab>
+          <x-side-tab href="{{route('seller.booking')}}" icon="fa-home" title="Booking"></x-side-tab>
          
         </ul>
       </div>
